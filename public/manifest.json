@@ -1,0 +1,22 @@
+{
+  "name": "NeuroFlow - Marketing Digital & Intelligence Artificielle",
+  "short_name": "NeuroFlow",
+  "description": "Agence de marketing digital spécialisée en intelligence artificielle. SEO IA, publicité Meta Ads, growth hacking et analytics prédictive.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#00ffff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "marketing", "technology"],
+  "lang": "fr",
+  "scope": "/",
+  "prefer_related_applications": false
+}
