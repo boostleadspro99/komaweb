@@ -12,24 +12,83 @@ const Contact: React.FC = () => {
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<{[key: string]: string}>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const validateForm = () => {
+    const newErrors: {[key: string]: string} = {};
+    
+    if (!formData.name.trim()) {
+      newErrors.name = 'Le nom est requis';
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = 'L\'email est requis';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Format d\'email invalide';
+    }
+    
+    if (!formData.message.trim()) {
+      newErrors.message = 'Le message est requis';
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = 'Le message doit contenir au moins 10 caractères';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulation d'envoi
-    setTimeout(() => {
-      setIsSubmitted(true);
-      setTimeout(() => {
-        setIsSubmitted(false);
+    
+    if (!validateForm()) {
+      return;
+    }
+    
+    setIsSubmitting(true);
+    setErrors({});
+    
+    try {
+      const response = await fetch('https://getform.io/f/bpjpozgb', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      if (response.ok) {
+        setIsSubmitted(true);
         setFormData({ name: '', email: '', company: '', budget: '', service: '', message: '' });
-      }, 4000);
-    }, 1000);
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 4000);
+      } else {
+        throw new Error('Erreur lors de l\'envoi du formulaire');
+      }
+    } catch (error) {
+      console.error('Erreur:', error);
+      setErrors({ submit: 'Une erreur est survenue lors de l\'envoi. Veuillez réessayer.' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [name]: value
     }));
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
   };
 
   const services = [
@@ -161,9 +220,19 @@ const Contact: React.FC = () => {
                           value={formData.name}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all duration-300"
+                          className={`w-full px-4 py-3 bg-gray-800/50 border rounded-lg text-white placeholder-gray-400 focus:ring-1 transition-all duration-300 ${
+                            errors.name 
+                              ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
+                              : 'border-gray-700 focus:border-cyan-500 focus:ring-cyan-500'
+                          }`}
                           placeholder="Votre nom"
+                          aria-describedby={errors.name ? 'name-error' : undefined}
                         />
+                        {errors.name && (
+                          <p id="name-error" className="mt-1 text-sm text-red-400" role="alert">
+                            {errors.name}
+                          </p>
+                        )}
                       </div>
                       
                       <div className="space-y-2">
@@ -177,9 +246,19 @@ const Contact: React.FC = () => {
                           value={formData.email}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all duration-300"
+                          className={`w-full px-4 py-3 bg-gray-800/50 border rounded-lg text-white placeholder-gray-400 focus:ring-1 transition-all duration-300 ${
+                            errors.email 
+                              ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
+                              : 'border-gray-700 focus:border-cyan-500 focus:ring-cyan-500'
+                          }`}
                           placeholder="votre@email.com"
+                          aria-describedby={errors.email ? 'email-error' : undefined}
                         />
+                        {errors.email && (
+                          <p id="email-error" className="mt-1 text-sm text-red-400" role="alert">
+                            {errors.email}
+                          </p>
+                        )}
                       </div>
                     </div>
 
