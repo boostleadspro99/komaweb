@@ -12,7 +12,7 @@ const HeroSection: React.FC = () => {
   ];
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 pt-20">
+    <section className="hero-section min-h-screen flex items-center justify-center px-6 pt-20">
       <div className="max-w-4xl mx-auto text-center">
         <div className="mb-8">
           <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-cyan-500/20 to-magenta-500/20 rounded-full border border-cyan-500/30 mb-6">

@@ -30,8 +30,10 @@ const SEO: React.FC<SEOProps> = ({
       {/* Basic Meta Tags */}
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
+      <meta name="format-detection" content="telephone=no" />
       <meta name="keywords" content={keywords} />
       <meta name="author" content="NeuroFlow" />
+      <meta httpEquiv="x-dns-prefetch-control" content="on" />
       
       {/* Canonical URL */}
       {canonical && <link rel="canonical" href={canonical} />}

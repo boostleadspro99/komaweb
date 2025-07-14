@@ -21,7 +21,7 @@ const StrategieDigitalePersonnalisee = React.lazy(() => import('./pages/services
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-purple-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-purple-900" style={{ contain: 'layout style paint' }}>
       <Layout>
         <Suspense fallback={<LoadingScreen />}>
           <Routes>

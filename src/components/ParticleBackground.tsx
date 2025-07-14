@@ -13,8 +13,12 @@ const ParticleBackground: React.FC = () => {
     // Check for reduced motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
+      // Show static background instead
+      ctx.fillStyle = 'rgba(0, 255, 255, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
       return; // Don't animate if user prefers reduced motion
     }
+    
     let animationFrameId: number;
     let particles: Array<{
       x: number;
@@ -35,7 +39,7 @@ const ParticleBackground: React.FC = () => {
 
     const createParticles = () => {
       particles = [];
-      const particleCount = Math.floor((canvas.width * canvas.height) / 8000);
+      const particleCount = Math.min(50, Math.floor((canvas.width * canvas.height) / 12000));
       
       for (let i = 0; i < particleCount; i++) {
         particles.push({

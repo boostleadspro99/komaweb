@@ -8,20 +8,24 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom'],
+          vendor: ['react', 'react-dom', 'react-helmet-async'],
           router: ['react-router-dom'],
-          icons: ['lucide-react']
+          icons: ['lucide-react'],
+          utils: ['src/utils/analytics.ts', 'src/hooks/useIntersectionObserver.ts']
         }
       }
     },
-    sourcemap: true,
+    sourcemap: false, // Disable sourcemaps in production for smaller bundle
     minify: 'terser',
     terserOptions: {
       compress: {
         drop_console: true,
-        drop_debugger: true
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.warn']
       }
-    }
+    },
+    chunkSizeWarningLimit: 1000,
+    assetsInlineLimit: 4096 // Inline assets smaller than 4kb
   },
   optimizeDeps: {
     exclude: ['lucide-react'],
