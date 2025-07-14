@@ -64,6 +64,8 @@ const About: React.FC = () => {
                 src="https://images.pexels.com/photos/3184639/pexels-photo-3184639.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="Équipe NeuroFlow"
                 className="rounded-2xl"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-2xl"></div>
             </div>

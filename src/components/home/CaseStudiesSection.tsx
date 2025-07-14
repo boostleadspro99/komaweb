@@ -112,6 +112,8 @@ const CaseStudiesSection: React.FC = () => {
                           src={study.image}
                           alt={study.client}
                           className="w-full h-full object-cover rounded-lg"
+                          loading="lazy"
+                          decoding="async"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-lg"></div>
                       </div>

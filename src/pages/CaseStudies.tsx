@@ -157,6 +157,8 @@ const CaseStudies: React.FC = () => {
                       src={study.image}
                       alt={study.title}
                       className="w-full h-96 object-cover"
+                      loading="lazy"
+                      decoding="async"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     <div className="absolute top-6 left-6">
