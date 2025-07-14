@@ -326,18 +326,43 @@ const Contact: React.FC = () => {
                         onChange={handleChange}
                         required
                         rows={5}
-                        className="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all duration-300 resize-none"
+                        className={`w-full px-4 py-3 bg-gray-800/50 border rounded-lg text-white placeholder-gray-400 focus:ring-1 transition-all duration-300 resize-none ${
+                          errors.message 
+                            ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
+                            : 'border-gray-700 focus:border-cyan-500 focus:ring-cyan-500'
+                        }`}
                         placeholder="Parlez-nous de vos objectifs, défis actuels, et comment nous pouvons vous aider à atteindre vos ambitions..."
+                        aria-describedby={errors.message ? 'message-error' : undefined}
                       />
+                      {errors.message && (
+                        <p id="message-error" className="mt-1 text-sm text-red-400" role="alert">
+                          {errors.message}
+                        </p>
+                      )}
                     </div>
+                    
+                    {/* Champ anti-spam invisible */}
+                    <input type="text" name="_gotcha" style={{ display: 'none' }} />
+                    
+                    {/* Affichage des erreurs de soumission */}
+                    {errors.submit && (
+                      <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg">
+                        <p className="text-red-400 text-sm" role="alert">
+                          {errors.submit}
+                        </p>
+                      </div>
+                    )}
                     
                     <button
                       type="submit"
-                      className="group w-full py-4 bg-gradient-to-r from-cyan-500 to-magenta-500 rounded-lg font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25"
+                      disabled={isSubmitting}
+                      className="group w-full py-4 bg-gradient-to-r from-cyan-500 to-magenta-500 rounded-lg font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                     >
                       <span className="flex items-center justify-center">
-                        Envoyer ma demande
-                        <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        {isSubmitting ? 'Envoi en cours...' : 'Envoyer ma demande'}
+                        {!isSubmitting && (
+                          <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        )}
                       </span>
                     </button>
 
