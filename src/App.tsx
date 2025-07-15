@@ -2,6 +2,8 @@ import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import LoadingScreen from './components/LoadingScreen';
+import { ToastProvider } from './components/ui/ToastContainer';
+import ScrollProgress from './components/ui/ScrollProgress';
 
 // Lazy loading des pages
 const Home = React.lazy(() => import('./pages/Home'));
@@ -21,26 +23,29 @@ const StrategieDigitalePersonnalisee = React.lazy(() => import('./pages/services
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-purple-900" style={{ contain: 'layout style paint' }}>
-      <Layout>
-        <Suspense fallback={<LoadingScreen />}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/a-propos" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/services/audit-seo" element={<AuditSEO />} />
-            <Route path="/services/publicite-meta" element={<PubliciteMeta />} />
-            <Route path="/services/creation-site-web" element={<CreationSiteWeb />} />
-            <Route path="/services/referencement-local" element={<ReferencementLocal />} />
-            <Route path="/services/email-marketing" element={<EmailMarketing />} />
-            <Route path="/services/gestion-reseaux-sociaux" element={<GestionReseauxSociaux />} />
-            <Route path="/services/strategie-digitale-personnalisee" element={<StrategieDigitalePersonnalisee />} />
-            <Route path="/etudes-de-cas" element={<CaseStudies />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </Suspense>
-      </Layout>
-    </div>
+    <ToastProvider>
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-purple-900" style={{ contain: 'layout style paint' }}>
+        <ScrollProgress />
+        <Layout>
+          <Suspense fallback={<LoadingScreen />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/a-propos" element={<About />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/services/audit-seo" element={<AuditSEO />} />
+              <Route path="/services/publicite-meta" element={<PubliciteMeta />} />
+              <Route path="/services/creation-site-web" element={<CreationSiteWeb />} />
+              <Route path="/services/referencement-local" element={<ReferencementLocal />} />
+              <Route path="/services/email-marketing" element={<EmailMarketing />} />
+              <Route path="/services/gestion-reseaux-sociaux" element={<GestionReseauxSociaux />} />
+              <Route path="/services/strategie-digitale-personnalisee" element={<StrategieDigitalePersonnalisee />} />
+              <Route path="/etudes-de-cas" element={<CaseStudies />} />
+              <Route path="/contact" element={<Contact />} />
+            </Routes>
+          </Suspense>
+        </Layout>
+      </div>
+    </ToastProvider>
   );
 }
 

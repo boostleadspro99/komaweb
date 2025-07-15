@@ -31,6 +31,40 @@ html {
   }
 }
 
+/* ===== SYSTÈME D'ESPACEMENT UNIFORME ===== */
+/* Classes utilitaires pour un espacement cohérent */
+.section-spacing {
+  @apply py-20 lg:py-24;
+}
+
+.section-spacing-sm {
+  @apply py-12 lg:py-16;
+}
+
+.section-spacing-xs {
+  @apply py-8 lg:py-12;
+}
+
+.container-padding {
+  @apply px-6 lg:px-8;
+}
+
+.content-spacing {
+  @apply space-y-6 lg:space-y-8;
+}
+
+.grid-spacing {
+  @apply gap-6 lg:gap-8;
+}
+
+.card-padding {
+  @apply p-6 lg:p-8;
+}
+
+.text-spacing {
+  @apply space-y-4;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -85,6 +119,55 @@ html {
 
 .animate-shimmer {
   animation: shimmer 2s infinite;
+}
+
+/* Nouvelles animations pour les optimisations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(0, 255, 255, 0.6); }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-out-right {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out;
+}
+
+.animate-slide-out-right {
+  animation: slide-out-right 0.3s ease-in;
 }
 
 /* Glassmorphism effect */

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Linkedin, Twitter, Mail } from 'lucide-react';
+import OptimizedImage from '../ui/OptimizedImage';
 
 const TeamSection: React.FC = () => {
   const team = [
@@ -34,7 +35,7 @@ const TeamSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 px-6 bg-gradient-to-b from-transparent to-black/20">
+    <section className="section-spacing container-padding bg-gradient-to-b from-transparent to-black/20">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -48,25 +49,22 @@ const TeamSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-spacing">
           {team.map((member, index) => (
             <div
               key={index}
-              className="group relative bg-gradient-to-br from-gray-900/50 to-black/50 rounded-xl border border-gray-800 overflow-hidden hover:border-cyan-500/50 transition-all duration-300 hover:transform hover:scale-105"
+              className="group relative bg-gradient-to-br from-gray-900/50 to-black/50 rounded-xl border border-gray-800 overflow-hidden hover:border-cyan-500/50 transition-all duration-300 hover:transform hover:scale-105 animate-float"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-magenta-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               
-              <div className="relative z-10 p-6">
+              <div className="relative z-10 card-padding content-spacing">
                 <div className="relative mb-4 overflow-hidden rounded-lg">
-                  <img
+                  <OptimizedImage
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
                     width="300"
-                    height="192"
-                    loading="lazy"
-                    decoding="async"
-                    fetchPriority="low"
+                    height={192}
+                    className="transition-transform duration-300 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>

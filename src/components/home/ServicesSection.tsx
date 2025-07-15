@@ -49,7 +49,7 @@ const ServicesSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 px-6">
+    <section className="section-spacing container-padding">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -63,16 +63,16 @@ const ServicesSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-spacing">
           {services.map((service, index) => (
             <div
               key={index}
               id={service.id}
-              className="group relative p-6 bg-gradient-to-br from-gray-900/50 to-black/50 rounded-xl border border-gray-800 hover:border-cyan-500/50 transition-all duration-300 hover:transform hover:scale-105"
+              className="group relative card-padding bg-gradient-to-br from-gray-900/50 to-black/50 rounded-xl border border-gray-800 hover:border-cyan-500/50 transition-all duration-300 hover:transform hover:scale-105"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-magenta-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               
-              <div className="relative z-10">
+              <div className="relative z-10 content-spacing">
                 <div className="w-12 h-12 bg-gradient-to-br from-cyan-500/20 to-magenta-500/20 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                   <service.icon className="w-6 h-6 text-cyan-400" />
                 </div>

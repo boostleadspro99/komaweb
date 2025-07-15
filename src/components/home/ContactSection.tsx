@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Send, CheckCircle, ArrowRight } from 'lucide-react';
+import { useToast } from '../ui/ToastContainer';
 
 const ContactSection: React.FC = () => {
+  const { showSuccess, showError } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -47,11 +49,8 @@ const ContactSection: React.FC = () => {
     // Simulation d'envoi
     setTimeout(() => {
       setIsSubmitting(false);
-      setIsSubmitted(true);
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setFormData({ name: '', email: '', company: '', message: '' });
-      }, 3000);
+      showSuccess('Message envoyé avec succès ! Nous vous répondrons sous 24h.');
+      setFormData({ name: '', email: '', company: '', message: '' });
     }, 2000);
   };
 

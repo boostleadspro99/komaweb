@@ -56,7 +56,7 @@ const CaseStudiesSection: React.FC = () => {
   };
 
   return (
-    <section className="py-20 px-6">
+    <section className="section-spacing container-padding">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -122,14 +122,14 @@ const CaseStudiesSection: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                    <div className="text-spacing">
               ))}
             </div>
           </div>
 
-          {/* Navigation */}
+                    <div className="grid grid-cols-2 grid-spacing">
           <button
-            onClick={prevSlide}
+                        <div key={resultIndex} className="bg-gradient-to-br from-cyan-500/10 to-magenta-500/10 rounded-lg card-padding border border-cyan-500/20">
             className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-gradient-to-br from-cyan-500/20 to-magenta-500/20 rounded-full flex items-center justify-center hover:from-cyan-500/40 hover:to-magenta-500/40 transition-all duration-300"
           >
             <ChevronLeft className="w-6 h-6 text-cyan-400" />

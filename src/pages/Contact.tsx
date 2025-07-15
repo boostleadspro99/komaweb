@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import SEO from '../components/SEO';
 import { Send, CheckCircle, Mail, Phone, MapPin, Clock, MessageSquare } from 'lucide-react';
+import { useToast } from '../components/ui/ToastContainer';
+import OptimizedImage from '../components/ui/OptimizedImage';
 
 const Contact: React.FC = () => {
+  const { showSuccess, showError } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -59,17 +62,14 @@ const Contact: React.FC = () => {
       });
       
       if (response.ok) {
-        setIsSubmitted(true);
+        showSuccess('Message envoyé avec succès ! Notre équipe vous contactera dans les 24h.');
         setFormData({ name: '', email: '', company: '', budget: '', service: '', message: '' });
-        setTimeout(() => {
-          setIsSubmitted(false);
-        }, 4000);
       } else {
         throw new Error('Erreur lors de l\'envoi du formulaire');
       }
     } catch (error) {
       console.error('Erreur:', error);
-      setErrors({ submit: 'Une erreur est survenue lors de l\'envoi. Veuillez réessayer.' });
+      showError('Une erreur est survenue lors de l\'envoi. Veuillez réessayer.');
     } finally {
       setIsSubmitting(false);
     }
