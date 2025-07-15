@@ -122,14 +122,13 @@ const CaseStudiesSection: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                    <div className="text-spacing">
+                </div>
               ))}
             </div>
           </div>
 
-                    <div className="grid grid-cols-2 grid-spacing">
           <button
-                        <div key={resultIndex} className="bg-gradient-to-br from-cyan-500/10 to-magenta-500/10 rounded-lg card-padding border border-cyan-500/20">
+            onClick={prevSlide}
             className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-gradient-to-br from-cyan-500/20 to-magenta-500/20 rounded-full flex items-center justify-center hover:from-cyan-500/40 hover:to-magenta-500/40 transition-all duration-300"
           >
             <ChevronLeft className="w-6 h-6 text-cyan-400" />
